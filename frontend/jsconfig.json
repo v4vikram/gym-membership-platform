@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+      //  "@lib/*": ["backend/lib/*"],  // ✅ Custom alias
+      // "@models/*": ["backend/models/*"]
+    }
+  }
+}

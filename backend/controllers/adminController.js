@@ -21,14 +21,42 @@ export const getAllMemberships = asyncHandler(async (req, res) => {
 
 // Create Membership
 export const createMembership = asyncHandler(async (req, res) => {
-  const { name, price, duration, description } = req.body;
+  const {
+    name,
+    planCode,
+    price,
+    currency = "INR",
+    durationDays,
+    description,
+    durationLabel,
+    features = ["Unlimited gym access"],
+    maxVisits = null,
+    isActive = true,
+  } = req.body;
+
+  // ✅ Check required fields
+  if (!name || !planCode || !price || !durationDays) {
+    return res.status(400).json({ message: "Missing required fields" });
+  }
+
+  // ✅ Create membership
   const membership = await Membership.create({
     name,
+    planCode,
     price,
-    duration,
+    currency,
+    durationDays,
     description,
+    features,
+    maxVisits,
+    isActive,
+    durationLabel,
   });
-  res.status(201).json(membership);
+
+  res.status(201).json({
+    message: "Membership plan created successfully",
+    membership,
+  });
 });
 
 // Update Membership
@@ -83,6 +111,29 @@ export const deleteGym = asyncHandler(async (req, res) => {
   const gym = await Gym.findByIdAndDelete(req.params.id);
   if (!gym) return res.status(404).json({ message: "Gym not found" });
   res.json({ message: "Gym deleted successfully" });
+});
+
+// search gyms by name or location
+export const searchGyms = asyncHandler(async (req, res) => {
+  const { name, location } = req.query; // ✅ Now using query params
+
+  const filter = {};
+
+  if (name) {
+    filter.name = { $regex: name, $options: "i" }; // partial, case-insensitive
+  }
+
+  if (location) {
+    filter.location = { $regex: location, $options: "i" };
+  }
+
+  const gyms = await Gym.find(filter);
+
+  res.json({
+    success: true,
+    count: gyms.length,
+    gyms,
+  });
 });
 
 

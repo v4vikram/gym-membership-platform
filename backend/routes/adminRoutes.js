@@ -8,7 +8,8 @@ import {
   deleteMembership,
   createGym,
   updateGym,
-  deleteGym
+  deleteGym,
+  searchGyms
 } from '../controllers/adminController.js';
 
 const router = express.Router();
@@ -21,6 +22,7 @@ router.get('/gyms', getAllGyms);
 router.post('/gyms', createGym);
 router.put('/gyms/:id', updateGym);
 router.delete('/gyms/:id', deleteGym);
+router.get('/gyms/search', searchGyms);
 
 
 

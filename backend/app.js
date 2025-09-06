@@ -8,6 +8,7 @@ import morgan from "morgan";
 import errorHandler from "./middlewares/errorHandler.js";
 import routeStartup from "./routes/routeStartup.js";
 import connectDB from "./config/db.js";
+import cookieParser from "cookie-parser";
 
 
 connectDB()
@@ -15,9 +16,6 @@ connectDB()
 const app = express();
 const allowedOrigins = [
   'http://localhost:3000',
-  'http://localhost:3002',
-  'https://timewatch2-0-311005204045.europe-west1.run.app',
-  'https://timewatch-dashboard-fd-311005204045.europe-west1.run.app'
 ];
 
 // Middlewares
@@ -34,6 +32,8 @@ app.use(cors({
   },
   credentials: true
 }));
+
+app.use(cookieParser());
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.static("public")); // serve uploaded files
