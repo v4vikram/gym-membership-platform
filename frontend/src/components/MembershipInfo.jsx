@@ -5,6 +5,7 @@ import {
   FileText,
   Loader2,
   X,
+  IndianRupee,
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -110,7 +111,7 @@ export default function MembershipInfo({ loading, membership, userQrCode }) {
                 <div className="bg-green-50 rounded-xl p-4 flex items-center border border-green-100">
                   <div className="flex items-center space-x-3">
                     <div className="bg-green-500 p-2 rounded-lg">
-                      <DollarSign className="w-4 h-4 text-white" />
+                      <IndianRupee  className="w-4 h-4 text-white" />
                     </div>
                     {/* <p className="text-sm font-medium text-green-700">Price</p> */}
                   </div>

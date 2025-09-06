@@ -1,5 +1,5 @@
 "use client";
-import { BarChart3, CreditCard, Home, User } from "lucide-react";
+import { BarChart3, CreditCard, Dumbbell, Home, User } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -9,7 +9,7 @@ const Footer = () => {
   const navigationItems = [
     { id: "home", icon: Home, label: "Home", href: "/dashboard" },
     { id: "membership", icon: CreditCard, label: "Membership", href: "/dashboard/membership" },
-    { id: "gym", icon: BarChart3, label: "Gym", href: "/dashboard/gyms" },
+    { id: "gym", icon: Dumbbell, label: "Gym", href: "/dashboard/gyms" },
     { id: "profile", icon: User, label: "Profile", href: "/dashboard/profile" },
   ];
 
@@ -18,9 +18,9 @@ const Footer = () => {
     if (pathname === href) return true;
 
     // Special case: highlight profile for any nested profile pages
-    if (href.startsWith("/dashboard/profile") && pathname.startsWith("/dashboard/profile")) {
-      return true;
-    }
+    // if (href.startsWith("/dashboard/profile") && pathname.startsWith("/dashboard/profile")) {
+    //   return true;
+    // }
 
     return false;
   };
