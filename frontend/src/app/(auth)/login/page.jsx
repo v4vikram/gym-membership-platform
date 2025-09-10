@@ -185,7 +185,7 @@ const GymPassAuth = () => {
 
             const intervalId = setInterval(() => {
               clearInterval(intervalId); // stop it after first run
-              router.replace(`dashboard`)
+              router.replace(`/dashboard/membership`)
              
             }, 3000);
           }

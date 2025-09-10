@@ -33,7 +33,7 @@ const userDashboardPage = () => {
 
   useEffect(()=>{
     async function loadGetMe(){
-      await getMe
+      // await getMe
     }
     loadGetMe()
   },[getMe])

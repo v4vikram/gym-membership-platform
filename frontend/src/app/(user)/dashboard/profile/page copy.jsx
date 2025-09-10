@@ -34,7 +34,7 @@ const UserProfilePage = () => {
   const { loading, membership, getUserMembershipById } = useUserMemberStore();
 
   useEffect(() => {
-    getMe();
+    // getMe();
     getUserMembershipById(user?._id);
   }, []);
   // console.log("membership", membership);

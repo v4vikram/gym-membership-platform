@@ -37,7 +37,7 @@ const UserProfilePage = () => {
   const { loading:visitLoading, visits, getAllVisitsById } = useVisitStore();
 
   useEffect(() => {
-    getMe();
+    // getMe();
     getUserMembershipById(user?._id);
     getAllVisitsById(user?._id);
   }, []);

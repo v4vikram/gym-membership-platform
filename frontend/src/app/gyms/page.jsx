@@ -2,10 +2,13 @@
 import React, { useEffect, useState } from "react";
 import { Dumbbell, MapPin, Phone, Search, X } from "lucide-react";
 import { useGymStore } from "@/store/useGymStore";
+import { useParams } from "next/navigation";
 
 const gymsPage = () => {
   const { loading, gyms, getAllGym, searchGym } = useGymStore();
   const [searchQuery, setSearchQuery] = useState("");
+  const params = useParams();
+  console.log("gymsPage params:", params)
 
   useEffect(() => {
     if (!searchQuery) {

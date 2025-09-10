@@ -7,9 +7,9 @@ const Footer = () => {
   const pathname = usePathname();
 
   const navigationItems = [
-    { id: "home", icon: Home, label: "Home", href: "/dashboard" },
+    { id: "home", icon: Home, label: "Home", href: "/" },
     { id: "membership", icon: CreditCard, label: "Membership", href: "/dashboard/membership" },
-    { id: "gym", icon: Dumbbell, label: "Gym", href: "/dashboard/gyms" },
+    { id: "gym", icon: Dumbbell, label: "Gym", href: "/gyms" },
     { id: "profile", icon: User, label: "Profile", href: "/dashboard/profile" },
   ];
 

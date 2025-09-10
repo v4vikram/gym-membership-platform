@@ -1,7 +1,7 @@
 // app/(user)/user/layout.jsx
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useAuthStore } from "@/store/useAuthStore";
 import Navbar from "@/components/Navbar";
@@ -9,16 +9,23 @@ import StatusCard from "@/components/StatusCard";
 import Footer from "@/components/Footer";
 
 export default function UserLayout({ children }) {
-  const { loading, auth, getMe } = useAuthStore();
+  const path = usePathname();
+  const { loading, auth } = useAuthStore();
   const router = useRouter();
 
   useEffect(() => {
-    getMe();
+    if (!path.includes("/gyms")) {
+
+      // getMe();
+    }
   }, []);
 
+  console.log("UserLayout path:", path);
   useEffect(() => {
-    if (!loading && !auth) {
-      router.replace("/login"); // ✅ safe redirect
+    if (!path.includes("/gyms")) {
+      if (!loading && !auth) {
+        router.replace("/login"); // ✅ safe redirect
+      }
     }
   }, [loading, auth, router]);
 
@@ -39,9 +46,9 @@ export default function UserLayout({ children }) {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       {children}
-       <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

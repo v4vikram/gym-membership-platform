@@ -13,7 +13,7 @@ const Navbar = () => {
   const { logout, getMe, auth, user } = useAuthStore();
   // const getMe = useAuthStore((state) => state.getMe);
 
-  // console.log("getMe", user);
+  console.log("getMe", user);
 
   useEffect(() => {
     async function loadGetMe() {

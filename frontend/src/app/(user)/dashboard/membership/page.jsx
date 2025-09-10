@@ -9,7 +9,7 @@ const page = () => {
   const { loading, membership, getUserMembershipById } = useUserMemberStore();
 
   useEffect(() => {
-    getMe();
+    // getMe();
     getUserMembershipById(user?._id);
   }, []);
   return (
