@@ -13,14 +13,14 @@ export default function UserLayout({ children }) {
   const { loading, auth } = useAuthStore();
   const router = useRouter();
 
-  useEffect(() => {
-    if (!path.includes("/gyms")) {
+  // useEffect(() => {
+  //   if (!path.includes("/gyms")) {
 
-      // getMe();
-    }
-  }, []);
+  //     // getMe();
+  //   }
+  // }, []);
 
-  console.log("UserLayout path:", path);
+  // console.log("UserLayout path:", path);
   useEffect(() => {
     if (!path.includes("/gyms")) {
       if (!loading && !auth) {
