@@ -8,10 +8,15 @@ const page = () => {
   const { user, getMe } = useAuthStore();
   const { loading, membership, getUserMembershipById } = useUserMemberStore();
 
-  useEffect(() => {
-    // getMe();
-    getUserMembershipById(user?._id);
-  }, []);
+useEffect(() => {
+  getMe(); // fetch user first
+}, []);
+
+useEffect(() => {
+  if (user?._id) {
+    getUserMembershipById(user._id);
+  }
+}, [user?._id]);
   return (
     <div className="px-6 pt-5 pb-8 text-white relative overflow-hidden min-h-screen">
       <div className="animate-in fade-in slide-in-from-bottom-6 duration-500 ease-out">

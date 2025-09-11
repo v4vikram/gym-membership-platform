@@ -46,6 +46,7 @@ export const login = asyncHandler(async (req, res) => {
 });
 
 export const getMe = asyncHandler(async (req, res) => {
+  console.log("getMe called", req.cookies);
   const token = req.cookies.token;
   if (!token) return errorResponse(res, "Not authenticated", 401);
 
