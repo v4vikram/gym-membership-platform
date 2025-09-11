@@ -3,7 +3,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { useAuthStore } from "@/store/useAuthStore";
-import axios  from "@/utils/axiosInstance";
+import axios  from "@/lib/axiosInstance";
 
 export function useAuth() {
   const { user, setUser, loading, setLoading } = useAuthStore();

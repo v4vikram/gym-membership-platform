@@ -21,7 +21,7 @@ import {
   Target,
 } from "lucide-react";
 import Footer from "@/components/Footer";
-import axios from "@/utils/axiosInstance";
+import axios from "@/lib/axiosInstance";
 import { useAuthStore } from "@/store/useAuthStore";
 
 const userDashboardPage = () => {

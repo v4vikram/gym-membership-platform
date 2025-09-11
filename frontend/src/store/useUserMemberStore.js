@@ -1,6 +1,6 @@
 // store/useUserMemberStore.js
 import { create } from "zustand";
-import axiosInstance from "@/utils/axiosInstance";
+import axiosInstance from "@/lib/axiosInstance";
 
 export const useUserMemberStore = create((set) => ({
   loading: true,

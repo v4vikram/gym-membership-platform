@@ -1,5 +1,5 @@
 // api/auth.js
-import axiosInstance from "@/utils/axiosInstance";
+import axiosInstance from "@/lib/axiosInstance";
 
 // --- Login ---
 export const loginUser = async (data) => {
