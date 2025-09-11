@@ -9,6 +9,8 @@ export const useUserMemberStore = create((set) => ({
 
   getUserMembershipById: async (userId) => {
 
+      console.log("Fetching membership for userId:", userId); // 🔥 log
+
     try {
       const res = await axiosInstance.get(`/memberships/${userId}`);
 
