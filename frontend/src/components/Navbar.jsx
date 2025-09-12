@@ -11,8 +11,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   const { logout, getMe, auth, user } = useAuthStore();
-  // const getMe = useAuthStore((state) => state.getMe);
-
+ 
   console.log("getMe", user);
 
   useEffect(() => {

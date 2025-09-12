@@ -33,12 +33,6 @@ const HomePage = () => {
   const router = useRouter();
   const { user, getMe } = useAuthStore();
 
-  useEffect(() => {
-    async function loadGetMe() {
-      // await getMe
-    }
-    loadGetMe();
-  }, [getMe]);
 
   // Mock data for gyms
   const gyms = [
