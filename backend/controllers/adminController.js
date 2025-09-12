@@ -115,16 +115,18 @@ export const deleteGym = asyncHandler(async (req, res) => {
 
 // search gyms by name or location
 export const searchGyms = asyncHandler(async (req, res) => {
-  const { name, location } = req.query; // ✅ Now using query params
+  const { q } = req.query; // ✅ single query param
+  console.log("Search gyms with:", q);
 
-  const filter = {};
+  let filter = {};
 
-  if (name) {
-    filter.name = { $regex: name, $options: "i" }; // partial, case-insensitive
-  }
-
-  if (location) {
-    filter.location = { $regex: location, $options: "i" };
+  if (q) {
+    filter = {
+      $or: [
+        { name: { $regex: q, $options: "i" } },     // match gym name
+        { location: { $regex: q, $options: "i" } }, // match location
+      ],
+    };
   }
 
   const gyms = await Gym.find(filter);
@@ -135,6 +137,7 @@ export const searchGyms = asyncHandler(async (req, res) => {
     gyms,
   });
 });
+
 
 
 

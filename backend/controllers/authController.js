@@ -2,12 +2,12 @@ import asyncHandler from "express-async-handler";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/UserModel.js";
-import {errorResponse} from "../utils/response.js"
+import { errorResponse } from "../utils/response.js"
 
 // Signup
 export const signup = asyncHandler(async (req, res) => {
   console.log("req.body", req.body)
-  const { name, email, password,agreeTerms } = req.body;
+  const { name, email, password, agreeTerms } = req.body;
 
   const existingUser = await User.findOne({ email });
   if (existingUser) return res.status(400).json({ errors: { email: "Email already exists" } });
@@ -37,9 +37,9 @@ export const login = asyncHandler(async (req, res) => {
   // Send token as HTTP-only cookie
   res.cookie("token", token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "none",
-    maxAge: 1000 * 60 * 60  // 7 days
+    secure: true,          // must be true with SameSite=None
+    sameSite: "none",      // capital N sometimes works better
+    maxAge: 1000 * 60 * 60 * 24 * 7
   });
 
   res.json({ message: "Login successful", user: { id: user._id, name: user.name, email: user.email } });
