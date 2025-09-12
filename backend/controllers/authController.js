@@ -18,7 +18,7 @@ export const signup = asyncHandler(async (req, res) => {
 
   res.status(201).json({
     message: "User registered successfully",
-    user: { id: user._id, name: user.name, email: user.email }
+    // user: { id: user._id, name: user.name, email: user.email }
   });
 });
 
