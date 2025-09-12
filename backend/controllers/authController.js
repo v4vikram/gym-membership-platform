@@ -37,7 +37,7 @@ export const login = asyncHandler(async (req, res) => {
   // Send token as HTTP-only cookie
   res.cookie("token", token, {
     httpOnly: true,
-    secure: false,          // must be true with SameSite=None
+    secure: true,          // must be true with SameSite=None
     sameSite: "None",      // capital N sometimes works better
     maxAge: 1000 * 60 * 60 * 24 * 7
   });
