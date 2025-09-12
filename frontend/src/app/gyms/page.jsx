@@ -7,17 +7,15 @@ import { useParams } from "next/navigation";
 const gymsPage = () => {
   const { loading, gyms, getAllGym, searchGym } = useGymStore();
   const [searchQuery, setSearchQuery] = useState("");
-  const params = useParams();
-  console.log("gymsPage params:", params)
 
   useEffect(() => {
     if (!searchQuery) {
       getAllGym();
     }
-    searchGym(`location=${searchQuery}`);
+    searchGym(`q=${searchQuery}`);
   }, [searchQuery]);
 
-  console.log("Gyms data:", gyms);
+  // console.log("Gyms data:", gyms);
 
   if (loading) {
     return (
@@ -37,7 +35,7 @@ const gymsPage = () => {
         {/* Input */}
         <input
           type="text"
-          placeholder="Search gyms by location..."
+          placeholder="Search by name or location..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="w-full bg-gray-100 rounded-2xl py-4 px-12 focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all duration-200"
@@ -57,9 +55,8 @@ const gymsPage = () => {
 
       <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
         <Dumbbell className="w-5 h-5 text-blue-600" />
-        Partner Gyms
+        Partner Gyms {`(${gyms.length})`}
       </h2>
-
       <div className="space-y-4">
         {gyms && gyms.length > 0 ? (
           gyms.map((gym) => (

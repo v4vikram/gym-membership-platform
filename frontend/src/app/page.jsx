@@ -23,22 +23,22 @@ import {
 import Footer from "@/components/Footer";
 import axios from "@/lib/axiosInstance";
 import { useAuthStore } from "@/store/useAuthStore";
+import { useRouter } from "next/navigation";
 
 const HomePage = () => {
   const [activeTab, setActiveTab] = useState("gyms");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [isLoading, setIsLoading] = useState(false);
-  const {user, getMe} = useAuthStore()
+  const router = useRouter();
+  const { user, getMe } = useAuthStore();
 
-  useEffect(()=>{
-    async function loadGetMe(){
+  useEffect(() => {
+    async function loadGetMe() {
       // await getMe
     }
-    loadGetMe()
-  },[getMe])
-
-
+    loadGetMe();
+  }, [getMe]);
 
   // Mock data for gyms
   const gyms = [
@@ -156,8 +156,10 @@ const HomePage = () => {
     });
   };
 
-
   const handlePayment = async (membershipId) => {
+    if (!user) {
+      router.replace("/login");
+    }
     const res = await loadRazorpay();
     if (!res) {
       alert("Razorpay SDK failed to load");
@@ -167,7 +169,7 @@ const HomePage = () => {
     // 1️⃣ Create order on backend
     const { data } = await axios.post(`/memberships/payments/create-order`, {
       membershipId,
-        userId: user._id, // ✅ send user
+      userId: user._id, // ✅ send user
     });
     const { order, membership } = data;
 
@@ -198,8 +200,6 @@ const HomePage = () => {
 
   const renderGymsPage = () => (
     <div className="animate-in slide-in-from-right-4 duration-300">
-  
-
       {/* Quick Filters */}
       {/* <div className="px-4 mb-6">
         <div className="flex space-x-3 overflow-x-auto pb-2 scrollbar-hide">
@@ -245,7 +245,10 @@ const HomePage = () => {
                     </li>
                   ))}
                 </ul>
-                <button className="bg-white text-purple-600 px-6 py-2 rounded-full font-medium text-sm hover:bg-gray-100 transition-colors" onClick={()=>handlePayment("68bac09485aeb03f4f5b6aba")}>
+                <button
+                  className="bg-white text-purple-600 px-6 py-2 rounded-full font-medium text-sm hover:bg-gray-100 transition-colors"
+                  onClick={() => handlePayment("68bac09485aeb03f4f5b6aba")}
+                >
                   Buy Now
                 </button>
               </div>
@@ -689,7 +692,6 @@ const HomePage = () => {
       </main>
 
       {/* Bottom Navigation */}
-     
 
       {/* Floating Action Button */}
       {/* {activeTab === 'gyms' && (
